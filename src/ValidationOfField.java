@@ -58,10 +58,23 @@ public class ValidationOfField {
     private static boolean contactWithOtherShip(PlayingField playingField) {
         int[][] shipCoordinates = playingField.getShip().getShipCoordinates();
         int lengthOfShip = playingField.getShip().getSize();
-        int startI = shipCoordinates[0][0] -1;
-        int finishJ = shipCoordinates[0][lengthOfShip - 1] + 1;
-        int startJ = shipCoordinates[1][0] -1;
-        int finishI = shipCoordinates[1][lengthOfShip - 1] + 1;
+        int startI;
+        int finishI;
+        int startJ;
+        int finishJ;
+        if (shipCoordinates[0][0] != shipCoordinates[0][lengthOfShip - 1] ) {
+            startI = shipCoordinates[0][0] - 1;
+            finishJ = shipCoordinates[0][lengthOfShip - 1] + 1;
+            startJ = shipCoordinates[1][0] - 1;
+            finishI = shipCoordinates[1][lengthOfShip - 1] + 1;
+
+        } else {
+            startI = shipCoordinates[0][0] - 1;
+            finishI = shipCoordinates[0][lengthOfShip - 1] + 1;
+            startJ = shipCoordinates[1][0] - 1;
+            finishJ = shipCoordinates[1][lengthOfShip - 1] + 1;
+        }
+
 
         for (int i = startI; i < finishI; i++) {
             for (int j = startJ; j < finishJ; j++) {

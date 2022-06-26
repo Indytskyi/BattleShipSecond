@@ -4,13 +4,21 @@ public class Battle {
 
     private GameShips gameShips = new GameShips();
 
+    private boolean changePlayers = true;
+
     private PlayingField player1 = new PlayingField("Player 1");
     private PlayingField player2 = new PlayingField("Player 2");
 
     public void initializationOfShips() {
         gameShips.initializationOfShip(player1);
-        moveToAnotherPlayer();
+        System.out.println("\nPress Enter and pass the move to another player");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         gameShips.initializationOfShip(player2);
+        fight(player1, player2);
     }
 
     public void fight(PlayingField playingFieldYour, PlayingField playingFieldOpponent) {
@@ -18,7 +26,12 @@ public class Battle {
             playingFieldOpponent.printBattlefieldFog();
             System.out.println("---------------------");
             playingFieldYour.printBattlefield();
-
+            System.out.println(playingFieldYour.getNameOfPlayer() + ", it's your turn:");
+            gameShips.startGame(playingFieldOpponent);
+            if (playingFieldOpponent.getCountOfLiveShips() == 0) {
+                break;
+            }
+            moveToAnotherPlayer();
 
         }
 
@@ -29,6 +42,14 @@ public class Battle {
         System.out.println("\nPress Enter and pass the move to another player");
         try {
             System.in.read();
+            if (changePlayers) {
+                changePlayers = false;
+                fight(player2, player1);
+
+            } else {
+                changePlayers = true;
+                fight(player1, player2);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
