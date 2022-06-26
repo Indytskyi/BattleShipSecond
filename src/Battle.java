@@ -24,9 +24,9 @@ public class Battle {
     public void fight(PlayingField playingFieldYour, PlayingField playingFieldOpponent) {
         while (playingFieldOpponent.getCountOfLiveShips() != 0) {
             playingFieldOpponent.printBattlefieldFog();
-            System.out.println("---------------------");
+            System.out.print("---------------------");
             playingFieldYour.printBattlefield();
-            System.out.println(playingFieldYour.getNameOfPlayer() + ", it's your turn:");
+            System.out.println("\n" + playingFieldYour.getNameOfPlayer() + ", it's your turn:");
             gameShips.startGame(playingFieldOpponent);
             if (playingFieldOpponent.getCountOfLiveShips() == 0) {
                 break;
@@ -36,6 +36,7 @@ public class Battle {
         }
 
         System.out.println(playingFieldYour.getNameOfPlayer() + ", win!");
+        System.exit(0);
     }
 
     private void moveToAnotherPlayer() {

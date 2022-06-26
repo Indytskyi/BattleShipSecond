@@ -9,9 +9,16 @@ public class Attack {
 
     private boolean deadShip;
 
-    public void setCoordinates(String coordinates) {
-        rowCoordinates = coordinates.charAt(0) - 'A' + 1;
-        columnCoordinates = Integer.parseInt(coordinates.substring(1));
+    public boolean setCoordinates(String coordinates) { // ??????????????/ ------------
+        try {
+            rowCoordinates = coordinates.charAt(0) - 'A' + 1;
+            columnCoordinates = Integer.parseInt(coordinates.substring(1));
+            System.out.println();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public int getRowCoordinates() {
@@ -32,7 +39,6 @@ public class Attack {
 
     public boolean validateShot() {
         if (columnCoordinates > 10 || rowCoordinates > 10) {
-            System.out.println("\nError! You entered the wrong coordinates! Try again:\n");
             return false;
         }
         return true;

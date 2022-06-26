@@ -75,7 +75,6 @@ public class ValidationOfField {
             finishJ = shipCoordinates[1][lengthOfShip - 1] + 1;
         }
 
-
         for (int i = startI; i < finishI; i++) {
             for (int j = startJ; j < finishJ; j++) {
                 if (playingField.getPlayingField()[i][j] == 'O') {
