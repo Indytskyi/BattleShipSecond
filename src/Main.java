@@ -8,5 +8,6 @@ public class Main {
 //        gameShips.startGame(playingField);
         Battle battle = new Battle();
         battle.initializationOfShips();
+
     }
 }

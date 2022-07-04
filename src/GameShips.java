@@ -36,37 +36,29 @@ public class GameShips {
 
 
     public void startGame(PlayingField playingField) {
-        System.out.println("\nThe game starts!");
-
-        playingField.printBattlefieldFog();
-        System.out.println("\nTake a shot!\n");
-
-        while (playingField.getCountOfLiveShips() != 0) {
             String shot = scanner.next();
-            playingField.getAttack().setCoordinates(shot);
-            if (!playingField.getAttack().validateShot()) {
-                continue;
+            boolean validate = playingField.getAttack().setCoordinates(shot);
+            if (!playingField.getAttack().validateShot() || !validate) {
+                System.out.println("\nError! You entered the wrong coordinates! Try again:\n");
+                startGame(playingField); // ??????????? -----------------------------------
             }
 
             playingField.setHitOfAttack();
-            playingField.printBattlefieldFog();
+
             if (playingField.getCountOfLiveShips() != 0) {
                 if (playingField.getAttack().isHitShip()) {
                     if (!playingField.getAttack().isDeadShip()) {
-                        System.out.println("\nYou hit a ship! Try again:\n");
+                        System.out.println("You hit a ship!\n");
                     } else {
-                        System.out.println("\nYou sank a ship! Specify a new target:\n");
+                        System.out.println("You sank a ship!\n");
                     }
                     playingField.getAttack().setDeadShip(false);
                 } else {
-                    System.out.println("\nYou missed!  Try again:\n");
+                    System.out.println("You missed!\n");
                 }
             }
 
 
-        }
-
-        System.out.println("You sank the last ship. You won. Congratulations!");
     }
 
 
